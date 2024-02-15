@@ -22,3 +22,18 @@ exports.getThoughtById = async (req, res) => {
     res.status(500).send(error.message);
   }
 };
+
+// create a new thought and link it to the user
+exports.createThought = async (req, res) => {
+  try {
+    const thought = await Thought.create(req.body);
+    await User.findByIdAndUpdate(
+      req.body.userId,
+      { $push: { thoughts: thought._id } },
+      { new: true }
+    );
+    res.json(thought);
+  } catch (error) {
+    res.status(400).send(error.message);
+  }
+};
