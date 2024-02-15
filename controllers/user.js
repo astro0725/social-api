@@ -46,3 +46,19 @@ exports.updateUser = async (req, res) => {
   }
 };
 
+// delete a user by _id and remove their thoughts
+exports.deleteUser = async (req, res) => {
+  try {
+    const user = await User.findByIdAndDelete(req.params.id);
+    if (!user) {
+      return res.status(404).send('User not found');
+    }
+    // Bonus: Remove a user's associated thoughts when deleted
+    await Thought.deleteMany({ username: user.username });
+    res.send(`User and their thoughts removed`);
+  } catch (error) {
+    res.status(500).send(error.message);
+  }
+};
+
+
