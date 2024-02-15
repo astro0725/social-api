@@ -10,3 +10,16 @@ exports.getAllUsers = async (req, res) => {
   }
 };
 
+// get a single user by _id
+exports.getUserById = async (req, res) => {
+  try {
+    const user = await User.findById(req.params.id).populate('thoughts').populate('friends');
+    if (!user) {
+      return res.status(404).send('User not found');
+    }
+    res.json(user);
+  } catch (error) {
+    res.status(500).send(error.message);
+  }
+};
+
