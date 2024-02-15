@@ -1,1 +1,0 @@
-// setup nosql config
