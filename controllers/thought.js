@@ -37,3 +37,16 @@ exports.createThought = async (req, res) => {
     res.status(400).send(error.message);
   }
 };
+
+// update a thought by _id
+exports.updateThought = async (req, res) => {
+  try {
+    const thought = await Thought.findByIdAndUpdate(req.params.id, req.body, { new: true });
+    if (!thought) {
+      return res.status(404).send('Thought not found');
+    }
+    res.json(thought);
+  } catch (error) {
+    res.status(400).send(error.message);
+  }
+};
