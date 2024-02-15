@@ -24,7 +24,7 @@ const reactionSchema = new Schema({
   toJSON: {
     getters: true,
   },
-  _id: false, // Use this to prevent an automatic _id field addition by Mongoose for subdocuments
+  _id: false,
 });
 
 module.exports = reactionSchema;
