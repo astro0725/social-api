@@ -1,5 +1,7 @@
-// * `DELETE` to remove user by its `_id`
 const express = require('express');
 const router = express.Router();
+const { deleteUser } = require('../../../controllers/user');
+
+router.delete('/:id', deleteUser);
 
 module.exports = router;

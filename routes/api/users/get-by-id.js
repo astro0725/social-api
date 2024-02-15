@@ -1,5 +1,7 @@
-// * `GET` a single user by its `_id` and populated thought and friend data
 const express = require('express');
 const router = express.Router();
+const { getUserById } = require('../../../controllers/user');
+
+router.get('/:id', getUserById);
 
 module.exports = router;

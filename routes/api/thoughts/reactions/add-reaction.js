@@ -1,5 +1,7 @@
-// * `POST` to create a reaction stored in a single thought's `reactions` array field
 const express = require('express');
 const router = express.Router();
+const { addReaction } = require('../../../../controllers/reaction');
+
+router.post('/', addReaction);
 
 module.exports = router;

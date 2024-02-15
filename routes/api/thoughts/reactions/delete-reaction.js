@@ -1,5 +1,7 @@
-// * `DELETE` to pull and remove a reaction by the reaction's `reactionId` value
 const express = require('express');
 const router = express.Router();
+const { deleteReaction } = require('../../../../controllers/reaction');
+
+router.delete('/:reactionId', deleteReaction);
 
 module.exports = router;
