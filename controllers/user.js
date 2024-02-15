@@ -33,3 +33,16 @@ exports.createUser = async (req, res) => {
   }
 };
 
+// update a user by _id
+exports.updateUser = async (req, res) => {
+  try {
+    const user = await User.findByIdAndUpdate(req.params.id, req.body, { new: true });
+    if (!user) {
+      return res.status(404).send('User not found');
+    }
+    res.json(user);
+  } catch (error) {
+    res.status(400).send(error.message);
+  }
+};
+
