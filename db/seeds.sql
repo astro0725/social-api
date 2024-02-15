@@ -1,0 +1,1 @@
+-- create seeds for user , thoughts, friends and reactions
