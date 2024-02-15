@@ -50,3 +50,16 @@ exports.updateThought = async (req, res) => {
     res.status(400).send(error.message);
   }
 };
+
+// delete a thought by _id
+exports.deleteThought = async (req, res) => {
+  try {
+    const thought = await Thought.findByIdAndDelete(req.params.id);
+    if (!thought) {
+      return res.status(404).send('Thought not found');
+    }
+    res.send('Thought removed');
+  } catch (error) {
+    res.status(500).send(error.message);
+  }
+};
